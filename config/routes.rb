@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     resources :training_requests, only: [:index, :destroy] if SettingsHelper.feature_on?(:training_requests)
 
     resources :instruments do
+      resources :single_reservations, controller: "single_reservations", only: [:new, :create]
       collection do
         get "list", to: "instruments#public_list"
       end
